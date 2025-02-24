@@ -1,0 +1,18 @@
+/* CSS Variables for Colors and Global Settings */
+:root {
+    --primary-color: #00b894;        /* Green */
+    --primary-color-rgb: 0, 184, 148; /* RGB values for primary color */
+    --secondary-color: #ff7675;      /* Soft Red */
+    --secondary-color-rgb: 255, 118, 117; /* RGB values for secondary color */
+    --background-color: #1e1e2f;     /* Dark Blue */
+    --background-color-rgb: 30, 30, 47; /* RGB values for background color */
+    --text-color: #e0e0e0;           /* Light Gray */
+    --accent-color: #6c5ce7;         /* Purple for accents */
+    --accent-color-rgb: 108, 92, 231; /* RGB values for accent color */
+    --card-background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    --hover-effect: rgba(255, 255, 255, 0.2);    /* Hover effect */
+    --footer-color: #121212;         /* Darker footer background */
+    --header-bg: rgba(30, 30, 47, 0.9); /* Header background with transparency */
+    --transition-speed: 0.3s;
+    --border-radius: 10px;
+}
