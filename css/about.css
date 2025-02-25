@@ -50,7 +50,7 @@
     border-radius: var(--border-radius);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, flex-direction 0.5s ease;
     position: relative;
     z-index: 1;
 }
@@ -99,6 +99,7 @@
     border: 5px solid var(--primary-color);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .profile-image:hover {
@@ -120,4 +121,81 @@
     line-height: 1.8;
     margin-bottom: 25px;
     font-size: 1.1rem;
+}
+
+/* Responsive design for about box */
+@media (max-width: 768px) {
+    .about-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .profile-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        margin-bottom: 30px;
+        order: -1; /* Always put image first in mobile view */
+    }
+    
+    .bio {
+        text-align: center;
+    }
+    
+    .bio h1 {
+        font-size: 2rem;
+    }
+    
+    .about-card {
+        padding: 30px 20px;
+    }
+}
+
+/* Animation for about elements */
+.about-box.animate-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add smooth transition for responsive changes */
+@media (max-width: 992px) {
+    .about-box {
+        padding: 30px;
+    }
+    
+    .profile-image {
+        width: 250px;
+        height: 400px;
+    }
+}
+
+/* Additional responsive fixes */
+@media (max-width: 480px) {
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .about-card {
+        padding: 25px 15px;
+    }
+    
+    .bio h1 {
+        font-size: 1.75rem;
+    }
+    
+    .bio p {
+        font-size: 1rem;
+    }
 }
