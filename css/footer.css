@@ -80,9 +80,9 @@ footer p {
 }
 
 .contact-icons a:hover {
-    background: var(--primary-color);
-    transform: translateY(-5px) rotate(360deg);
-    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.4);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 15px var(--shadow-color, rgba(0, 184, 148, 0.8)));
 }
 
 /* Add tooltip to contact icons */
@@ -124,11 +124,11 @@ footer p {
     .footer-links {
         gap: 15px;
     }
-    
+
     .contact-icons {
         gap: 15px;
     }
-    
+
     footer {
         padding: 30px 15px;
     }

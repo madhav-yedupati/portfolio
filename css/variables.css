@@ -7,32 +7,32 @@
     --secondary-color-rgb: 255, 118, 117; /* RGB values for secondary color */
     --accent-color: #6c5ce7;         /* Purple for accents */
     --accent-color-rgb: 108, 92, 231; /* RGB values for accent color */
-    
+
     /* Enhanced dark theme */
     --background-color: #121825;     /* Deeper Dark Blue */
     --background-color-rgb: 18, 24, 37; /* RGB values for background color */
     --text-color: #e6edf3;           /* Enhanced Light Gray for better readability */
     --text-light: #b0b8c4;           /* Secondary text color */
-    
+
     /* Card and container styling */
     --card-background: rgba(255, 255, 255, 0.07); /* More subtle semi-transparent white */
     --hover-effect: rgba(255, 255, 255, 0.15);    /* Refined hover effect */
     --footer-color: #0c101b;         /* Deeper footer background */
     --header-bg: rgba(18, 24, 37, 0.92); /* Header background with improved transparency */
-    
+
     /* UI elements */
     --shadow-color: rgba(var(--primary-color-rgb), 0.25);
     --card-border: rgba(255, 255, 255, 0.08);
     --card-glow: 0 8px 32px rgba(var(--primary-color-rgb), 0.25);
-    
+
     /* Layout measurements */
     --transition-speed: 0.35s;
     --transition-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    --border-radius: 12px;
+    --border-radius: 12px 50px;
     --content-width: 1200px;
     --section-spacing: 120px;
     --element-spacing: 30px;
-    
+
     /* Typography */
     --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
@@ -47,23 +47,23 @@
 
 /* Enhanced Animation System */
 @keyframes fadeUp {
-    from { 
-        opacity: 0; 
+    from {
+        opacity: 0;
         transform: translateY(20px);
     }
-    to { 
-        opacity: 1; 
+    to {
+        opacity: 1;
         transform: translateY(0);
     }
 }
 
 @keyframes scaleIn {
-    from { 
-        opacity: 0; 
+    from {
+        opacity: 0;
         transform: scale(0.95);
     }
-    to { 
-        opacity: 1; 
+    to {
+        opacity: 1;
         transform: scale(1);
     }
 }
