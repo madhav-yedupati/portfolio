@@ -1,5 +1,3 @@
-
-
 /* Projects Section Styling */
 #projects {
     padding: 100px 5%;
@@ -48,8 +46,10 @@
     margin-top: 50px;
 }
 
-/* Project Cards */
+/* Project Cards - Now clickable */
 .project-card {
+    display: block;
+    text-decoration: none;
     background: var(--card-background);
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -58,6 +58,7 @@
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     margin-bottom: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    color: inherit;
 }
 
 .project-card:hover {
@@ -69,50 +70,49 @@
 /* Project Image Container */
 .project-image {
     width: 100%;
-    height: 180px; /* Fixed height for consistency */
+    height: 180px;
     overflow: hidden;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--card-background); /* Fallback background */
+    background-color: var(--card-background);
 }
 
 .project-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the container */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-/* Hide the image if it fails to load */
 .project-image img.hidden {
     display: none;
 }
 
 .project-card:hover .project-image img {
-    transform: scale(1.1); /* Slightly zoom in on hover */
+    transform: scale(1.1);
 }
 
 /* Project Icon Container */
 .project-icon {
-    font-size: 4rem; /* Larger icons */
-    color: var(--primary-color); /* Use your primary color */
+    font-size: 4rem;
+    color: var(--primary-color);
     transition: transform 0.3s ease, color 0.3s ease;
-    display: none; /* Hide the icon by default */
+    display: none;
 }
 
 .project-icon.hidden {
-    display: none; /* Ensure the icon is hidden if it has the hidden class */
+    display: none;
 }
 
 .project-icon:not(.hidden) {
-    display: block; /* Show the icon if it doesn't have the hidden class */
+    display: block;
 }
 
 .project-card:hover .project-icon:not(.hidden) {
-    transform: scale(1.1); /* Slightly enlarge icons on hover */
-    color: var(--accent-color); /* Change color on hover */
+    transform: scale(1.1);
+    color: var(--accent-color);
 }
 
 .project-card h4 {
@@ -130,20 +130,30 @@
     line-height: 1.5;
 }
 
+/* Update CTA button to look like a button but not be clickable */
 .project-card .cta-button {
+    display: inline-block;
     margin: 0 15px 20px;
     font-size: 0.9rem;
     padding: 8px 20px;
     background: var(--primary-color);
     color: white;
-    border: none;
     border-radius: var(--border-radius);
-    cursor: pointer;
     transition: background 0.3s ease;
+    pointer-events: none; /* Prevent the button from being clickable */
 }
 
-.project-card .cta-button:hover {
+.project-card:hover .cta-button {
     background: var(--primary-hover-color);
+}
+
+/* Project category headings */
+.project-category h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 30px 0 20px;
+    text-align: center;
+    width: 100%;
 }
 
 /* Responsive adjustments */
