@@ -58,3 +58,20 @@
     .timeline-item::before { left: -20px; }
   }
   
+
+
+#skills i {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+#skills p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+#skills span {
+  display: flex;
+  align-items: center;
+}
