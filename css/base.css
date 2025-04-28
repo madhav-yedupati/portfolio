@@ -118,3 +118,49 @@ section {
     from { transform: translateX(30px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+
+
+
+/* Typing Effect Cursor */
+#Effect-Write {
+    display: inline-block;
+    border-right: 2px solid var(--primary-color); /* Cursor effect */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    animation: fadeIn 1s ease-in-out;
+    margin-top: 20px;
+    max-width: 600px; /* Adjust based on the longest phrase */
+    text-align: left; /* Align text to the left */
+    vertical-align: middle; /* Align cursor with text */
+  }
+  
+  .typing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between the text and button */
+  }
+
+  .cursor-blink {
+    animation: blink 0.7s step-end infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  /* Add fade-in animation for the text */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
