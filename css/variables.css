@@ -42,7 +42,7 @@
     /* Layout measurements */
     --transition-speed: 0.35s;
     --transition-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    --border-radius: 12px 50px;
+    --border-radius: 1.5rem;
     --content-width: 1200px;
     --section-spacing: 120px;
     --element-spacing: 30px;

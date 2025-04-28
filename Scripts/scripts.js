@@ -62,33 +62,74 @@ function adjustColorBrightness(hex, percent) {
 }
 
 // Initialize mode on page load
-applyMode(currentModeIndex);
+document.addEventListener('DOMContentLoaded', function() {
+    applyMode(currentModeIndex);
+    
+    // Create overlay element for mobile menu
+    const menuOverlay = document.createElement('div');
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+    
+    // Initialize scroll listener for header effects
+    setupScrollEffects();
+});
 
 // Toggle mode on button click
-modeToggle.addEventListener('click', () => {
-    currentModeIndex = (currentModeIndex + 1) % modes.length;
-    applyMode(currentModeIndex);
+if (modeToggle) {
+    modeToggle.addEventListener('click', () => {
+        currentModeIndex = (currentModeIndex + 1) % modes.length;
+        applyMode(currentModeIndex);
 
-    // Smooth button animation
-    modeToggle.style.transform = 'scale(1.2)';
-    setTimeout(() => modeToggle.style.transform = 'scale(1)', 200);
-});
+        // Smooth button animation
+        modeToggle.style.transform = 'scale(1.2)';
+        setTimeout(() => modeToggle.style.transform = 'scale(1)', 200);
+    });
+}
 
 // Toggle Menu for Small Screens with Animation
 const menuIcon = document.getElementById('menu-icon');
 const headerLinks = document.getElementById('header-links');
+const menuOverlay = document.querySelector('.menu-overlay');
 
-menuIcon.addEventListener('click', () => {
-    headerLinks.classList.toggle('active');
-    menuIcon.classList.toggle('active');
+if (menuIcon && headerLinks) {
+    menuIcon.addEventListener('click', () => {
+        headerLinks.classList.toggle('active');
+        menuIcon.classList.toggle('active');
+        
+        // Toggle overlay
+        if (menuOverlay) {
+            menuOverlay.classList.toggle('active');
+        }
+        
+        // Change icon when menu is toggled
+        if (headerLinks.classList.contains('active')) {
+            menuIcon.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
     
-    // Change icon when menu is toggled
-    if (headerLinks.classList.contains('active')) {
-        menuIcon.innerHTML = '<i class="fas fa-times"></i>';
-    } else {
-        menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+    // If overlay exists, close menu when clicking on it
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', () => {
+            headerLinks.classList.remove('active');
+            menuIcon.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+        });
     }
-});
+    
+    // Close menu when clicking on a link
+    const menuLinks = headerLinks.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            headerLinks.classList.remove('active');
+            menuIcon.classList.remove('active');
+            if (menuOverlay) menuOverlay.classList.remove('active');
+            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+}
 
 // Certificate Navigation with Enhanced Animation
 const certificates = [
@@ -137,81 +178,99 @@ if (certImage && certLink) {
     updateCertificate();
 }
 
-// Dynamic Header Opacity with Enhanced Scroll Effects
-const header = document.getElementById('header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+// Function to set up scroll effects for header
+function setupScrollEffects() {
+    const header = document.getElementById('header');
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+    let lastScroll = 0;
     
-    // Scroll-to-top button visibility
-    if (currentScroll > 300) {
-        scrollToTopButton.classList.add('visible');
-    } else {
-        scrollToTopButton.classList.remove('visible');
-    }
+    if (!header) return;
     
-    // Header effects
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        // Scrolling down
-        header.style.opacity = '0.7';
-        header.style.transform = 'translateY(-10px)';
-    } else {
-        // Scrolling up
-        header.style.opacity = '1';
-        header.style.transform = 'translateY(0)';
-    }
-    lastScroll = currentScroll;
-});
-
-// Hover Effects for Project Cards
-const projectCards = document.querySelectorAll('.project-card');
-
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px)';
-        card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-        card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
-    });
-});
-
-// Enhanced Contact Icons Animation
-const contactIcons = document.querySelectorAll('.contact-icons a');
-
-contactIcons.forEach(icon => {
-    icon.addEventListener('mouseenter', () => {
-        icon.style.transform = 'scale(1.2) rotate(5deg)';
-        icon.style.color = 'var(--primary-color)';
-    });
-
-    icon.addEventListener('mouseleave', () => {
-        icon.style.transform = 'scale(1) rotate(0deg)';
-        icon.style.color = 'white';
-    });
-});
-
-// Search Functionality
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-
-if (searchButton && searchInput) {
-    searchButton.addEventListener('click', () => {
-        performSearch();
-    });
-    
-    // Also search when Enter key is pressed
-    searchInput.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') {
-            performSearch();
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Scroll-to-top button visibility
+        if (scrollToTopButton) {
+            if (currentScroll > 300) {
+                scrollToTopButton.classList.add('visible');
+            } else {
+                scrollToTopButton.classList.remove('visible');
+            }
         }
+        
+        // Header effects
+        if (currentScroll > 50) {
+            header.classList.add('scroll-header');
+        } else {
+            header.classList.remove('scroll-header');
+        }
+        
+        // Optional opacity effect
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scrolling down - slight opacity
+            header.style.opacity = '0.95';
+        } else {
+            // Scrolling up - full opacity
+            header.style.opacity = '1';
+        }
+        
+        lastScroll = currentScroll;
     });
 }
 
+// Hover Effects for Project Cards
+document.addEventListener('DOMContentLoaded', function() {
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
+        });
+    });
+
+    // Enhanced Contact Icons Animation
+    const contactIcons = document.querySelectorAll('.contact-icons a');
+
+    contactIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            icon.style.transform = 'scale(1.2) rotate(5deg)';
+            icon.style.color = 'var(--primary-color)';
+        });
+
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = 'scale(1) rotate(0deg)';
+            icon.style.color = 'white';
+        });
+    });
+
+    // Search Functionality
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    if (searchButton && searchInput) {
+        searchButton.addEventListener('click', () => {
+            performSearch();
+        });
+        
+        // Also search when Enter key is pressed
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+});
+
 function performSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (!searchInput) return;
+    
     const query = searchInput.value.toLowerCase();
     const sections = document.querySelectorAll('section');
     let foundResults = false;
@@ -254,44 +313,51 @@ function highlightMatches(element, query) {
 }
 
 // Clear Search
-if (document.getElementById('clear-search')) {
-    document.getElementById('clear-search').addEventListener('click', () => {
-        if (searchInput) searchInput.value = '';
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            section.style.display = 'block';
-            
-            // Remove highlights
-            const nodes = section.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-            nodes.forEach(node => {
-                node.innerHTML = node.innerText;
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('clear-search')) {
+        document.getElementById('clear-search').addEventListener('click', () => {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) searchInput.value = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'block';
+                
+                // Remove highlights
+                const nodes = section.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+                nodes.forEach(node => {
+                    node.innerHTML = node.innerText;
+                });
             });
+            
+            // Hide any results message
+            const resultsMessage = document.getElementById('search-results-message');
+            if (resultsMessage) {
+                resultsMessage.style.display = 'none';
+            }
         });
-        
-        // Hide any results message
-        const resultsMessage = document.getElementById('search-results-message');
-        if (resultsMessage) {
-            resultsMessage.style.display = 'none';
-        }
-    });
-}
+    }
+});
 
 // Responsive about box handling
-const aboutBox = document.querySelector('.about-box');
-const profileImage = document.querySelector('.profile-image');
-
+// Responsive about box handling
 function handleResize() {
+    const aboutBox = document.querySelector('.about-box');
+    if (!aboutBox) return;
+
     if (window.innerWidth <= 768) {
-        if (aboutBox) aboutBox.classList.add('active');
-        // Add a slight delay to trigger the animation after the layout change
-        setTimeout(() => {
-            if (profileImage) profileImage.classList.add('animate');
-        }, 50); // 50ms delay to ensure the layout is updated
+        aboutBox.style.flexDirection = 'column';
+        aboutBox.style.textAlign = 'center';
     } else {
-        if (aboutBox) aboutBox.classList.remove('active');
-        if (profileImage) profileImage.classList.remove('animate');
+        aboutBox.style.flexDirection = 'row';
+        aboutBox.style.textAlign = 'left';
     }
 }
+
+// Add event listener for window resize
+window.addEventListener('resize', handleResize);
+
+// Call handleResize on page load to apply the correct layout
+document.addEventListener('DOMContentLoaded', handleResize);
 
 // Trigger the effect on page load and window resize
 window.addEventListener('resize', handleResize);
