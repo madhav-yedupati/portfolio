@@ -100,11 +100,12 @@
 .cta-button:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
+    color: var(--text-color);
 }
-
+ 
 .cta-button:hover::before {
     width: 100%;
-}
+} 
 
 /* Section separators */
 .section-divider {

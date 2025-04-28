@@ -201,7 +201,7 @@ header nav button:hover,
 }
   
 /* Enhanced mobile menu styles */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .menu-icon { 
         display: block; 
     }

@@ -189,11 +189,11 @@ header nav button:hover {
     margin: 10px;
 }
 
-.cta-button:hover {
+/* .cta-button:hover {
     background: var(--accent-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(108, 92, 231, 0.5);
-}
+} */
 
 /* Social Media Links */
 .contact-icons {

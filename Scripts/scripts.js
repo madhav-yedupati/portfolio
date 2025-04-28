@@ -100,13 +100,6 @@ if (menuIcon && headerLinks) {
         if (menuOverlay) {
             menuOverlay.classList.toggle('active');
         }
-        
-        // Change icon when menu is toggled
-        if (headerLinks.classList.contains('active')) {
-            menuIcon.innerHTML = '<i class="fas fa-times"></i>';
-        } else {
-            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
-        }
     });
     
     // If overlay exists, close menu when clicking on it
