@@ -164,3 +164,9 @@ section {
       opacity: 1;
     }
   }
+
+
+
+h3{
+    color: var(--primary-color);
+}
