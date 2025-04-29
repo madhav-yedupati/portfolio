@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background: linear-gradient(rgba(30, 30, 47, 0.9), rgba(30, 30, 47, 0.95)), url('/images/download.jpg') center/cover fixed no-repeat;
+    background: linear-gradient(rgba(30, 30, 47, 0.4), rgba(30, 30, 47, 0.95)), url('/images/download.jpg') center/cover fixed no-repeat;
     color: var(--text-color);
     line-height: 1.6;
     transition: background-color 0.5s, color 0.5s;
