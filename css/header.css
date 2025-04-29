@@ -1,32 +1,29 @@
-
 /* Enhanced Header Styles */
 #header {
     padding: 12px 20px;
-    background: var(--header-bg, rgba(30, 30, 47, 0.95));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: transparent;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
     color: white;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--shadow-color, rgba(0, 0, 0, 0.1));
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
-
 #header.scroll-header {
-    padding: 12px 30px;
+    padding: 10px 30px;
     background: var(--header-bg, rgba(20, 20, 35, 0.98));
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--shadow-color, rgba(0, 0, 0, 0.15));
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
   
 @keyframes slideDown {
@@ -44,6 +41,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
@@ -87,13 +85,8 @@ nav {
   
 /* Fix for RTL layout - ensure title is properly positioned */
 html[dir="rtl"] .header-title {
-    left: 50%;
-    transform: translateX(-50%);
-}
-  
-html[dir="ltr"] .header-title {
-    left: 0;
-    transform: translateX(0);
+    margin-right: 0;
+    margin-left: 40px;
 }
   
 @keyframes fadeIn {
@@ -146,11 +139,10 @@ html[dir="ltr"] .header-title {
   
 .header-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     margin-left: auto;
     flex-wrap: wrap;
-
 }
   
 header nav button, 
@@ -168,9 +160,7 @@ header nav button,
     width: 36px;
     height: 36px;
     font-size: 1.3rem;
-    flex-wrap: wrap; 
 }
-
   
 header nav button:hover,
 .header-buttons a:hover {
@@ -182,7 +172,6 @@ header nav button:hover,
   
 /* Improved Hamburger Menu for Mobile */
 .menu-icon {
-    margin: 10px;
     display: none;
     font-size: 24px;
     cursor: pointer;
@@ -190,6 +179,8 @@ header nav button:hover,
     background: transparent;
     border: none;
     transition: all 0.3s ease;
+    padding: 0;
+    margin: 0;
 }
 
 .menu-icon:hover {
@@ -210,45 +201,39 @@ header nav button:hover,
     .header-links {
         display: none;
         flex-direction: column;
-        position: fixed; /* Changed from absolute to fixed */
-        right: 20px; /* Position relative to viewport */
-        top: 80px; /* Adjust to be below the header */
+        position: fixed;
+        right: 0;
+        top: 70px;
         background: rgba(var(--background-color-rgb, 0, 0, 0), 0.95);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        padding: 30px;
-        border-radius: 15px;
+        padding: 20px;
+        border-radius: 0 0 0 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--shadow-color, rgba(0, 184, 148, 0.2));
         animation: menuSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        width: 250px;
-        gap: 25px;
-        border-left: 4px solid var(--primary-color);
+        width: 200px;
+        gap: 15px;
+        border-left: 3px solid var(--primary-color);
         z-index: 1002;
     }
     
     html[dir="rtl"] .header-links {
         right: auto;
-        left: 20px;
+        left: 0;
         border-left: none;
-        border-right: 4px solid var(--primary-color);
+        border-right: 3px solid var(--primary-color);
+        border-radius: 0 0 15px 0;
     }
     
     @keyframes menuSlideIn {
-        from { transform: translateY(-20px) scale(0.95); opacity: 0; }
-        to { transform: translateY(0) scale(1); opacity: 1; }
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
     
     .header-links.active { 
         display: flex; 
     }
     
-    /* Fix for RTL layout on small screens */
-    html[dir="rtl"] .header-title {
-        left: auto;
-        right: 10px;
-        transform: translateX(0);
-    }
-
     .header-title {
         font-size: 24px;
     }
@@ -263,6 +248,17 @@ header nav button:hover,
     .header-links a:last-child {
         border-bottom: none;
     }
+    
+    .header-buttons {
+        gap: 10px;
+    }
+    
+    header nav button, 
+    .header-buttons a {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+    }
 }
   
 /* Active navigation indicator */
@@ -270,6 +266,7 @@ header nav button:hover,
     color: var(--primary-color);
     font-weight: 700;
     text-shadow: 0 0 15px var(--shadow-color, rgba(0, 184, 148, 0.5));
+    flex-wrap: wrap;
 }
   
 .header-links a.active-link::after {
@@ -278,11 +275,7 @@ header nav button:hover,
     background: var(--primary-color);
     height: 3px;
     box-shadow: 0 0 10px var(--shadow-color, rgba(0, 184, 148, 0.4));
-}
-
-/* Header animations on scroll */
-.header-title.scrolled {
-    font-size: 24px;
+    flex-wrap: wrap;
 }
 
 /* Header background variable calculation - adds RGB variables for opacity support */
@@ -299,7 +292,7 @@ header nav button:hover,
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 999;
     display: none;
     opacity: 0;
     transition: opacity 0.3s;
@@ -322,17 +315,32 @@ header nav button:hover,
 }
 
 @media (max-width: 480px) {
-    .header-buttons {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
+    #header {
+        padding: 10px 15px;
     }
-
-    .header-links a {
-        font-size: 0.9rem;
-    }
-
+    
     .header-title {
-        font-size: 1.2rem;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+    
+    html[dir="rtl"] .header-title {
+        margin-left: 20px;
+        margin-right: 0;
+    }
+    
+    .header-buttons {
+        gap: 8px;
+    }
+    
+    header nav button, 
+    .header-buttons a {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .header-links {
+        top: 60px;
     }
 }

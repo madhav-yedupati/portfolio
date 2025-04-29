@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
     menuOverlay.className = 'menu-overlay';
     document.body.appendChild(menuOverlay);
     
+    // Now that we've added the overlay to DOM, set up the event listener
+    setupMenuInteractions();
+    
     // Initialize scroll listener for header effects
     setupScrollEffects();
 });
@@ -86,90 +89,53 @@ if (modeToggle) {
     });
 }
 
-// Toggle Menu for Small Screens with Animation
-const menuIcon = document.getElementById('menu-icon');
-const headerLinks = document.getElementById('header-links');
-const menuOverlay = document.querySelector('.menu-overlay');
+// Setup menu interactions (extracted to function so it can be called after DOM is ready)
+function setupMenuInteractions() {
+    const menuIcon = document.getElementById('menu-icon');
+    const headerLinks = document.getElementById('header-links');
+    const menuOverlay = document.querySelector('.menu-overlay');
 
-if (menuIcon && headerLinks) {
-    menuIcon.addEventListener('click', () => {
-        headerLinks.classList.toggle('active');
-        menuIcon.classList.toggle('active');
-        
-        // Toggle overlay
-        if (menuOverlay) {
+    if (menuIcon && headerLinks && menuOverlay) {
+        // Toggle menu when clicking menu icon
+        menuIcon.addEventListener('click', () => {
+            headerLinks.classList.toggle('active');
+            menuIcon.classList.toggle('active');
             menuOverlay.classList.toggle('active');
-        }
-    });
-    
-    // If overlay exists, close menu when clicking on it
-    if (menuOverlay) {
+        });
+        
+        // Close menu when clicking on overlay
         menuOverlay.addEventListener('click', () => {
             headerLinks.classList.remove('active');
             menuIcon.classList.remove('active');
             menuOverlay.classList.remove('active');
-            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking anywhere on the document (outside menu)
+        document.addEventListener('click', (event) => {
+            // Only close if menu is active and click is outside menu and menu icon
+            if (
+                headerLinks.classList.contains('active') && 
+                !headerLinks.contains(event.target) && 
+                !menuIcon.contains(event.target)
+            ) {
+                headerLinks.classList.remove('active');
+                menuIcon.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const menuLinks = headerLinks.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                headerLinks.classList.remove('active');
+                menuIcon.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            });
         });
     }
-    
-    // Close menu when clicking on a link
-    const menuLinks = headerLinks.querySelectorAll('a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            headerLinks.classList.remove('active');
-            menuIcon.classList.remove('active');
-            if (menuOverlay) menuOverlay.classList.remove('active');
-            menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
-        });
-    });
 }
 
-// Certificate Navigation with Enhanced Animation
-const certificates = [
-    { image: 'images/linux.jpg', link: 'link-to-cert1', title: 'Linux Administration' },
-    { image: 'images/guide.jpg', link: 'link-to-cert2', title: 'Cybersecurity Guide' },
-    { image: 'images/osint.jpg', link: 'link-to-cert3', title: 'OSINT Fundamentals' },
-    { image: 'images/guide.jpg', link: 'link-to-cert4', title: 'Advanced Security' },
-];
-
-let currentCertIndex = 0;
-const certImage = document.getElementById('certificate-image');
-const certLink = document.getElementById('certificate-link');
-const certTitle = document.getElementById('certificate-title');
-
-const updateCertificate = () => {
-    if (!certImage || !certLink) return; // Guard clause if elements don't exist
-
-    certImage.style.opacity = 0;
-    setTimeout(() => {
-        certImage.src = certificates[currentCertIndex].image;
-        certLink.href = certificates[currentCertIndex].link;
-        if (certTitle) {
-            certTitle.textContent = certificates[currentCertIndex].title;
-        }
-        certImage.style.opacity = 1;
-    }, 300);
-};
-
-// Add event listeners only if elements exist
-if (document.getElementById('next-cert')) {
-    document.getElementById('next-cert').addEventListener('click', () => {
-        currentCertIndex = (currentCertIndex + 1) % certificates.length;
-        updateCertificate();
-    });
-}
-
-if (document.getElementById('prev-cert')) {
-    document.getElementById('prev-cert').addEventListener('click', () => {
-        currentCertIndex = (currentCertIndex - 1 + certificates.length) % certificates.length;
-        updateCertificate();
-    });
-}
-
-// Only call updateCertificate if certImage exists
-if (certImage && certLink) {
-    updateCertificate();
-}
 
 // Function to set up scroll effects for header
 function setupScrollEffects() {
@@ -211,127 +177,10 @@ function setupScrollEffects() {
     });
 }
 
-// Hover Effects for Project Cards
-document.addEventListener('DOMContentLoaded', function() {
-    const projectCards = document.querySelectorAll('.project-card');
 
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-            card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4)';
-        });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
-        });
-    });
 
-    // Enhanced Contact Icons Animation
-    const contactIcons = document.querySelectorAll('.contact-icons a');
 
-    contactIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', () => {
-            icon.style.transform = 'scale(1.2) rotate(5deg)';
-            icon.style.color = 'var(--primary-color)';
-        });
-
-        icon.addEventListener('mouseleave', () => {
-            icon.style.transform = 'scale(1) rotate(0deg)';
-            icon.style.color = 'white';
-        });
-    });
-
-    // Search Functionality
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-
-    if (searchButton && searchInput) {
-        searchButton.addEventListener('click', () => {
-            performSearch();
-        });
-        
-        // Also search when Enter key is pressed
-        searchInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-});
-
-function performSearch() {
-    const searchInput = document.getElementById('search-input');
-    if (!searchInput) return;
-    
-    const query = searchInput.value.toLowerCase();
-    const sections = document.querySelectorAll('section');
-    let foundResults = false;
-
-    sections.forEach(section => {
-        const sectionText = section.textContent.toLowerCase();
-        if (sectionText.includes(query)) {
-            section.style.display = 'block';
-            foundResults = true;
-            
-            // Highlight matching text
-            highlightMatches(section, query);
-        } else {
-            section.style.display = 'none';
-        }
-    });
-    
-    // Show a message if no results found
-    const resultsMessage = document.getElementById('search-results-message');
-    if (resultsMessage) {
-        if (!foundResults && query !== '') {
-            resultsMessage.textContent = 'No results found. Try a different search term.';
-            resultsMessage.style.display = 'block';
-        } else {
-            resultsMessage.style.display = 'none';
-        }
-    }
-}
-
-function highlightMatches(element, query) {
-    // This is a simplified version - in practice you'd need more sophisticated text node traversal
-    const nodes = element.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-    nodes.forEach(node => {
-        const text = node.textContent;
-        if (text.toLowerCase().includes(query)) {
-            const regex = new RegExp(`(${query})`, 'gi');
-            node.innerHTML = text.replace(regex, '<mark>$1</mark>');
-        }
-    });
-}
-
-// Clear Search
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('clear-search')) {
-        document.getElementById('clear-search').addEventListener('click', () => {
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) searchInput.value = '';
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.display = 'block';
-                
-                // Remove highlights
-                const nodes = section.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-                nodes.forEach(node => {
-                    node.innerHTML = node.innerText;
-                });
-            });
-            
-            // Hide any results message
-            const resultsMessage = document.getElementById('search-results-message');
-            if (resultsMessage) {
-                resultsMessage.style.display = 'none';
-            }
-        });
-    }
-});
-
-// Responsive about box handling
 // Responsive about box handling
 function handleResize() {
     const aboutBox = document.querySelector('.about-box');
@@ -397,6 +246,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-
-

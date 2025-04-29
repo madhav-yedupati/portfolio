@@ -10,7 +10,7 @@
 @import url(./modes.css);
 @import url(./scroll-top.css);
 @import url(./sections.css);
-@import url(./variables.css);
+
 
 /* Enhanced CSS Variables for Colors and Global Settings */
 :root {
@@ -55,6 +55,12 @@
     --font-weight-medium: 500;
     --font-weight-bold: 700;
     --line-height: 1.6;
+
+    /* header */
+    --header-bg: rgba(30, 30, 47, 0.98);
+    --header-bg-scrolled: rgba(20, 20, 35, 0.98);
+    --header-height: 70px;
+    --header-height-scrolled: 60px;
 }
 
 
