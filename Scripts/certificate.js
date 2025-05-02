@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         '10': {
             title: 'Python Programming',
-            description: 'Advanced Python programming including web development, automation, and data analysis applications.',
+            description: 'Advanced Python programming including web development, automation.',
             issuer: 'Mahara Tech',
             date: 'Issued: 2025',
             imageUrl: '../images/python.png'
