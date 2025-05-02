@@ -88,7 +88,15 @@ document.addEventListener('DOMContentLoaded', function() {
             issuer: 'Udemy',
             date: 'Issued: 2023',
             imageUrl: './../images/guide.jpg'
+        },
+        '13': {
+            title: 'JavaScript Programming Language',
+            description: 'Comprehensive course on core JavaScript concepts including data types, functions, OOP, DOM manipulation, JSON, AJAX, and event handling. Covers both client-side and server-side applications, ideal for beginners and new developers.',
+            issuer: 'Mahara Tech',
+            date: 'Issued: 2025',
+            imageUrl: './../images/js.png'
         }
+
     };
 
     // If on certificate details page, load the certificate data
