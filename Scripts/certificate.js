@@ -26,26 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
             date: 'Issued: October 2023',
             imageUrl: '../images/osint.jpg'
         },
-        '4': {
-            title: 'Cybersecurity Fundamentals',
-            description: 'Fundamental cybersecurity concepts including threat analysis, vulnerability assessment, and security protocols.',
-            issuer: 'Udemy',
-            date: 'Issued: October 2023',
-            imageUrl: '../images/Ethical_Hacking (1).png'
-        },
         '5': {
             title: 'Web Development',
             description: 'Modern web development certification covering HTML5, CSS3, JavaScript, and responsive design principles.',
             issuer: 'IEEE',
             date: 'Issued: 2023',
             imageUrl: '../images/CC6.png'
-        },
-        '6': {
-            title: 'Python Programming',
-            description: 'Python programming basics including data structures, algorithms, and object-oriented programming concepts.',
-            issuer: 'Udemy',
-            date: 'Issued: 2024',
-            imageUrl: '../images/Python_Programming_Basics.png'
         },
         '7': {
             title: 'Certified Ethical Hacker',
