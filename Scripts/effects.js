@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     const phrases = [
-      "Hi, I'm Amr Khaled.",
-      "A passionate cybersecurity specialist.",
-      "A software developer focused on Red Team operations.",
+      "Hi, I am Sai Madhav Yedupati.",
+      "A passionate machine learning engineer.",
+      "A software developer focused on AI and Data Science.",
       "Welcome to my portfolio!"
     ];
     const typingSpeed = 50; // Speed in milliseconds

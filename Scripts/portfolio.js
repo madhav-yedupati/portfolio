@@ -71,22 +71,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Typing effect for the welcome message
-const welcomeText = "Computer Science Graduate Student | Machine Learning Enthusiast | Data Analyst";
-const effectWrite = document.getElementById('Effect-Write');
-let i = 0;
-
-function typeWriter() {
-    if (i < welcomeText.length) {
-        effectWrite.innerHTML += welcomeText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-    }
-}
-
-// Start typing effect when page loads
-window.addEventListener('load', typeWriter);
-
 // Theme toggle functionality
 modeToggle.addEventListener('click', () => {
     body.classList.toggle('light-mode');
