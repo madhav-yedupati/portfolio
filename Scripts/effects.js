@@ -7,10 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     const phrases = [
-      "Hi, I am Sai Madhav Yedupati.",
-      "A passionate machine learning engineer.",
-      "A software developer focused on AI and Data Science.",
-      "Welcome to my portfolio!"
+      "Hi I am Sai Madhav Yedupati. Welcome to my portfolio."
     ];
     const typingSpeed = 50; // Speed in milliseconds
     const erasingSpeed = 30; // Speed for erasing
@@ -50,4 +47,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     typeText();
-  });
+  }); 
